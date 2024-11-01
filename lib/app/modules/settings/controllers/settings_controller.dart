@@ -173,7 +173,8 @@ class SettingsController extends GetxController {
     isSortedAlarmListEnabled.value = await _secureStorageProvider
         .readSortedAlarmListValue(key: _sortedAlarmListKey);
 
-    currentLanguage.value = await storage.readCurrentLanguage();
+    String? currentSelectedlanguage = await storage.readCurrentLanguage();
+    currentLanguage.value = currentSelectedlanguage ?? 'en_US';
 
     // Store the retrieved API key from the flutter secure storage
     String? retrievedAPIKey = await getKey(ApiKeys.openWeatherMap);

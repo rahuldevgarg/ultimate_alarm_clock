@@ -1,5 +1,4 @@
-import 'dart:ui';
-import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,8 +11,8 @@ class GetStorageProvider {
     return this;
   }
 
-  Future<String> readCurrentLanguage() async {
-    print(_getStorage.read('currentLanguageKey'));
+  Future<String?> readCurrentLanguage() async {
+    debugPrint(_getStorage.read('currentLanguageKey'));
     String? language = _getStorage.read(('currentLanguageKey'));
     return language;
   }

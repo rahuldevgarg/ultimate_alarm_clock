@@ -1141,7 +1141,9 @@ class AddOrUpdateAlarmController extends GetxController {
 
       if (customRingtoneResult != null) {
         String? filePath = customRingtoneResult.files.single.path;
-
+        if(filePath == null){
+          throw Exception('Unable to get audio file path.');
+        }
         String? savedFilePath =
             await saveToDocumentsDirectory(filePath: filePath);
 

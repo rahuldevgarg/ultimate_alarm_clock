@@ -230,16 +230,24 @@ class HomeController extends GetxController {
 
   void readProfileName() async {
     String profileName = await storage.readProfile();
-    selectedProfile.value = profileName;
     ProfileModel? p = await IsarDb.getProfile(profileName);
-    profileModel.value = p;
+    if(p != null){
+      selectedProfile.value = profileName;
+      profileModel.value = p;
+    }else{
+      debugPrint('Unable to get the selected profile');
+    }
   }
 
   void writeProfileName(String name) async {
-    await storage.writeProfile(name);
-    selectedProfile.value = name;
     ProfileModel? p = await IsarDb.getProfile(name);
-    profileModel.value = p;
+    if(p != null){
+      await storage.writeProfile(name);
+      selectedProfile.value = name;
+      profileModel.value = p;
+    }else{
+      debugPrint('Unable to get the selected profile');
+    }
   }
 
   @override
